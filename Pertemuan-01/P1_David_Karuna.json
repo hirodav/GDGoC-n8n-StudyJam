@@ -1,0 +1,89 @@
+{
+  "name": "My workflow pertemuan 1",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "P1-test",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [0, 0],
+      "id": "e84d9015-35c9-4ef9-ad81-d5b72f53ce0b",
+      "name": "Webhook",
+      "webhookId": "3422736d-431f-4966-9809-ff7a779eb93e"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b1172efe-c4fe-489a-a206-e6afde0f7361",
+              "name": "status",
+              "value": "succsess",
+              "type": "string"
+            },
+            {
+              "id": "a63130e7-5bb2-435c-9b30-6bbe7dba0f1b",
+              "name": "message",
+              "value": "=Terima Kasih {{ $json.body.Nama }}, Pesan kamu {{ $json.body.Pesan }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [224, 0],
+      "id": "00a9fc11-1d31-4da3-91d1-a3707316ddc2",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [448, 0],
+      "id": "5d549f6c-2147-450f-8dbe-5dabed6cf45d",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "0e6f6946-8ef6-4476-a877-5e2d77412d91",
+  "meta": {},
+  "id": "AtDSnHjeg5ZPSnnd",
+  "tags": []
+}
